@@ -1,4 +1,5 @@
 
-.classpath
-target
-.project
+authid-edge-agent/.classpath
+authid-edge-agent/target
+authid-edge-agent/.project
+authid-edge-agent/.settings

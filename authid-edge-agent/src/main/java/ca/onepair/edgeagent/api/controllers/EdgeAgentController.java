@@ -68,8 +68,9 @@ public class EdgeAgentController {
 	@RequestMapping(path = "ids/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> registerID(@PathVariable("id") String id, @RequestParam("protocol") String protocol,
-			@RequestParam("address") String address) throws JSONException {
-		return this.edgeAgentService.registerID(id, protocol, address);
+			@RequestParam("address") String address,
+			@RequestParam(value = "fee", required = false, defaultValue = "0") int fee) throws JSONException {
+		return this.edgeAgentService.registerID(id, protocol, address, fee);
 	}
 
 	@RequestMapping(value = "ids:transfer", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

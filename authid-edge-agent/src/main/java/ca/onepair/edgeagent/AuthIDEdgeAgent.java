@@ -98,7 +98,7 @@ public class AuthIDEdgeAgent extends Application {
 		return requestID;
 	}
 
-	public String registerID(AuthIDDriver authIDDriver, String id, String address, String protocol)
+	public String registerID(AuthIDDriver authIDDriver, String id, String address, String protocol, int fee)
 			throws JSONException {
 		JSONObject request = AuthIDEdgeAgent.createRequestObject();
 		String requestID = AuthIDEdgeAgent.getUniqueID();
@@ -117,7 +117,7 @@ public class AuthIDEdgeAgent extends Application {
 
 				if (result.get() == ButtonType.OK) {
 					try {
-						String txReference = authIDDriver.registerId(id, address, 0);
+						String txReference = authIDDriver.registerId(id, address, fee);
 
 						// Update the request
 						requests.get(requestID).put(REQUEST_STATUS, DONE);

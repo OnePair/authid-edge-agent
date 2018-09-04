@@ -181,13 +181,13 @@ public class EdgeAgentService {
 		return new ResponseEntity<String>(response.toString(), status);
 	}
 
-	public ResponseEntity<String> registerID(String id, String protocol, String address) throws JSONException {
+	public ResponseEntity<String> registerID(String id, String protocol, String address, int fee) throws JSONException {
 		JSONObject response = new JSONObject();
 		HttpStatus status = HttpStatus.OK;
 
 		try {
 			String requestID = AuthIDEdgeAgent.getInstance().registerID(this.authIDDriver.getAuthIDDriver(protocol), id,
-					address, protocol);
+					address, protocol, fee);
 			response.put("requestID", requestID);
 		} catch (JSONException e) {
 			status = HttpStatus.BAD_REQUEST;

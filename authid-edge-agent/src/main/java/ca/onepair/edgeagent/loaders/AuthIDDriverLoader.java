@@ -21,7 +21,7 @@ import ca.onepair.authid.common.drivers.MasterAuthIDDriver;
 
 public class AuthIDDriverLoader {
 
-	private static final String AGENT_DIR = System.getProperty("user.home") + "/.authid-agent1/";
+	private static final String AGENT_DIR = System.getProperty("user.home") + "/.authid-agent/";
 
 	private static final String BTC_KEY_WALLET = "authid-wallet";;
 	private static final String BTC_BLOCKSTORE = "blockstore.spvchain";
