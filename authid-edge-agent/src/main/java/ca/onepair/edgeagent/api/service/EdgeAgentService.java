@@ -26,10 +26,6 @@ import ca.onepair.edgeagent.AuthIDEdgeAgent;
 import ca.onepair.edgeagent.loaders.AuthIDDriverLoader;
 import ca.onepair.edgeagent.utils.Utils;
 
-/*
- * TODO: 1) Create specific exceptions and use those for HTTP status
- * 2) Check if two AuthID's have matching protocols
-*/
 @Service
 public class EdgeAgentService {
 
