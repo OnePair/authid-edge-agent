@@ -6,7 +6,7 @@ public class Utils {
 		if (!id.contains("."))
 			return null;
 
-		return id.substring(id.indexOf(".")).replace(".", "").toUpperCase();
+		return id.substring(id.lastIndexOf(".")).replace(".", "").toUpperCase();
 	}
 
 	public static String removeProtocolFromID(String id) {
