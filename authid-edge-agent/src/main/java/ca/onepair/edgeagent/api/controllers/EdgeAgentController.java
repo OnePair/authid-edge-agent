@@ -30,7 +30,8 @@ public class EdgeAgentController {
 		return this.edgeAgentService.getID(id);
 	}
 
-	@RequestMapping(value = "challenges", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "challenges", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE,
+			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> createChallenge(@RequestParam("challengerID") String challengerID,
 			@RequestParam("receiverID") String receiverID) throws JSONException {
