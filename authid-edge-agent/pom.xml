@@ -15,7 +15,7 @@
 	<repositories>
 		<repository>
 			<id>authid-core-mvn-repo</id>
-			<url>https://raw.githubusercontent.com/OnePair/authid-core/master/authid/</url>
+			<url>https://raw.githubusercontent.com/OnePair/authid-core/7cb903420972f80fd0a343b13bb7191ac1def5eb/authid/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>

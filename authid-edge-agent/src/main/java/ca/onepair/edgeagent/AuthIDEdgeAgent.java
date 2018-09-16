@@ -13,6 +13,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import ca.onepair.authid.common.certs.AuthIDCert;
 import ca.onepair.authid.common.certs.DHChallengeCert;
 import ca.onepair.authid.common.certs.SignedChallengeCert;
 import ca.onepair.authid.common.drivers.AuthIDDriver;
@@ -215,6 +216,52 @@ public class AuthIDEdgeAgent extends Application {
 						// Update the request
 						requests.get(requestID).put(REQUEST_STATUS, DONE);
 						requests.get(requestID).put("signedChallenge", signedChallenge.toJson());
+					} catch (Exception e) {
+						try {
+							requests.get(requestID).put(REQUEST_STATUS, REJECTED);
+							requests.get(requestID).put("message", e.getMessage());
+						} catch (JSONException ignored) {
+						}
+					}
+				} else {
+					// Update the request
+					try {
+						requests.get(requestID).put(REQUEST_STATUS, REJECTED);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+
+		});
+
+		return requestID;
+	}
+
+	public String signCert(AuthIDDriver authIDDriver, AuthIDCert cert, String id) throws JSONException {
+		JSONObject request = AuthIDEdgeAgent.createRequestObject();
+		String requestID = AuthIDEdgeAgent.getUniqueID();
+
+		this.requests.put(requestID, request);
+
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// Create the dialog
+				Alert dialog = createConfirmationDialog("Incoming signature request",
+						"Do you want to pursue with signing?");
+				// Show the dialog
+				Optional<ButtonType> result = dialog.showAndWait();
+
+				if (result.get() == ButtonType.OK) {
+					try {
+						AuthIDCert signedCert = authIDDriver.signCert(cert, id);
+
+						// Update the request
+						requests.get(requestID).put(REQUEST_STATUS, DONE);
+						requests.get(requestID).put("signedCert", signedCert.toJson());
 					} catch (Exception e) {
 						try {
 							requests.get(requestID).put(REQUEST_STATUS, REJECTED);

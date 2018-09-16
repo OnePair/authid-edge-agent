@@ -14,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import ca.onepair.authid.common.certs.AuthIDCert;
 import ca.onepair.authid.common.certs.DHChallengeCert;
+import ca.onepair.authid.common.certs.GenericAuthIDCert;
 import ca.onepair.authid.common.certs.SignedChallengeCert;
 import ca.onepair.authid.common.drivers.MasterAuthIDDriver;
 import ca.onepair.authid.common.exceptions.AuthIDDriverException;
@@ -236,6 +238,31 @@ public class EdgeAgentService {
 		} catch (NoDriverException e) {
 			status = HttpStatus.SERVICE_UNAVAILABLE;
 			response.put("message", e.getMessage());
+		}
+
+		return new ResponseEntity<String>(response.toString(), status);
+	}
+
+	public ResponseEntity<String> signCert(String claims, String id) throws JSONException {
+		JSONObject response = new JSONObject();
+		HttpStatus status = HttpStatus.OK;
+
+		String protocol = Utils.getProtocolFromID(id);
+
+		if (protocol == null) {
+			status = HttpStatus.SERVICE_UNAVAILABLE;
+			response.put("message", "Protocol unavailable.");
+		} else {
+			try {
+				JSONObject claimsJson = new JSONObject(claims);
+				AuthIDCert authIDCert = GenericAuthIDCert.fromClaimsJson(claimsJson);
+				String requestID = AuthIDEdgeAgent.getInstance().signCert(this.authIDDriver.getAuthIDDriver(protocol),
+						authIDCert, Utils.removeProtocolFromID(id));
+				response.put("requestID", requestID);
+			} catch (NoDriverException e) {
+				status = HttpStatus.SERVICE_UNAVAILABLE;
+				response.put("message", e.getMessage());
+			}
 		}
 
 		return new ResponseEntity<String>(response.toString(), status);

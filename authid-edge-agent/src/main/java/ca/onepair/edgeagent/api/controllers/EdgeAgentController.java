@@ -87,6 +87,13 @@ public class EdgeAgentController {
 		return this.edgeAgentService.signChallenge(challenge);
 	}
 
+	@RequestMapping(value = "certs:sign", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<String> signCert(@RequestBody String claims, @RequestParam("id") String id)
+			throws JSONException {
+		return this.edgeAgentService.signCert(claims, id);
+	}
+
 	/*
 	 * Generation and signing should be done separately
 	 */
