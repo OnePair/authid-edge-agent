@@ -12,6 +12,17 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
+	<repositories>
+		<repository>
+			<id>authid-core-mvn-repo</id>
+			<url>https://raw.githubusercontent.com/OnePair/authid-core/master/authid/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -53,7 +64,7 @@
 			<artifactId>authid-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>ca.onepair</groupId>
 			<artifactId>authid-btc-driver</artifactId>
