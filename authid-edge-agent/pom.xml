@@ -12,16 +12,17 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
+	<!-- This does not seem work
 	<repositories>
 		<repository>
 			<id>authid-core-mvn-repo</id>
-			<url>https://raw.githubusercontent.com/OnePair/authid-core/7cb903420972f80fd0a343b13bb7191ac1def5eb/authid/</url>
+			<url>https://raw.githubusercontent.com/OnePair/authid-core/e6f066f099d02f212607399ce78fa0806b6dbc8a/authid/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
 			</snapshots>
 		</repository>
-	</repositories>
+	</repositories>-->
 
 	<dependencies>
 		<!-- Spring -->

@@ -81,13 +81,13 @@ public class EdgeAgentController {
 		return this.edgeAgentService.transferID(id, address, protocol);
 	}
 
-	@RequestMapping(value = "challenges:sign", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "challenges:sign", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> signChallenge(@RequestBody String challenge) throws JSONException {
 		return this.edgeAgentService.signChallenge(challenge);
 	}
 
-	@RequestMapping(value = "certs:sign", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "certs:sign", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> signCert(@RequestBody String claims, @RequestParam("id") String id)
 			throws JSONException {
