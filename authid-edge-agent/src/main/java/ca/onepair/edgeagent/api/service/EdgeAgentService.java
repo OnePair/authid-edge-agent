@@ -101,10 +101,7 @@ public class EdgeAgentService {
 
 		try {
 			JSONObject signedChallengeJson = new JSONObject(signedChallenge);
-			System.out.println("json cert: " + signedChallengeJson);
-			System.out.println("Trying to parse to cert");
 			SignedChallengeCert signedChallengeCert = SignedChallengeCert.fromJson(signedChallengeJson);
-			System.out.println("Parsed to challenge cert");
 
 			boolean verified = this.authIDDriver.getAuthIDDriver(signedChallengeCert.getIDDoc().getProtocol())
 					.verifyChallenge(signedChallengeCert);
